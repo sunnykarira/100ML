@@ -65,7 +65,44 @@ X[:, 1: 3] = imputer.transform(X[:, 1:3])
        ['France', 37.0, 67000.0]])'''
 
 
+# Categorical Variables
+# Country and Purchased
+# Encoding categorical data
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+labelEncoder_X = LabelEncoder()
+X[:, 0] = labelEncoder_X.fit_transform(X[:, 0])
 
+'''So the problem is still the same machine learning models are based on equations and that's good that
 
+we replaced the text by numbers so that we can include the numbers in the equations.
+
+However since one is greater than zero and two is greater than one the equations in the model will think
+
+that Spain has a higher value than Germany and France and Germany has a higher value than France.
+
+And that's not the case.
+
+These are actually three categories and there is no relational order between the three.'''
+
+# We use dummy encoding to solve this problem
+onehotEncoder  = OneHotEncoder(categorical_features=[0])
+X = onehotEncoder.fit_transform(X).toarray()
+
+'''
+1	0	0	44	72000
+0	0	1	27	48000
+0	1	0	30	54000
+0	0	1	38	61000
+0	1	0	40	63777.8
+1	0	0	35	58000
+0	0	1	38.7778	52000
+1	0	0	48	79000
+0	1	0	50	83000
+1	0	0	37	67000
+'''
+
+labelEncoder_y = LabelEncoder()
+y = labelEncoder_y.fit_transform(y)
+'''[0, 1, 0, 0, 1, 1, 0, 1, 0, 1]''' # No/Yes
 
 
