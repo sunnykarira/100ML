@@ -105,4 +105,59 @@ labelEncoder_y = LabelEncoder()
 y = labelEncoder_y.fit_transform(y)
 '''[0, 1, 0, 0, 1, 1, 0, 1, 0, 1]''' # No/Yes
 
+# Splitting data into training set and test set
+
+from sklearn.model_selection import train_test_split
+#Putting 20% data in test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0) 
+
+# Normalizing the data
+'''We have two variables age and salary.
+
+So you can picture age as the x coordinate and the salary as the y coordinates.
+
+And in the machine running those equations some Euclidean distances between observation points.
+
+For example this one and this one are computed based on these two coordinates.
+
+And actually since the salary has a much wider range of values because it's going from zero to 100 k
+
+the Euclidean distance will be dominated by the salary'''
+
+from sklearn.preprocessing import StandardScaler
+sc_X = StandardScaler()
+X_train = sc_X.fit_transform(X_train)
+X_test = sc_X.transform(X_test) # Since it fitted to X_train we do not fit again for test
+
+'''
+As you can see the dummy variables takes values either 0 or 1.
+
+So do we need to scale that because it seems to be already scale right.
+
+So if you ask this question to Google you will find several answers you will find several teams for
+
+that.
+
+Some will say that no you don't need to scale these dummy variables.
+
+Some say that yes you need to do it because you want some accuracy in your predictions.
+
+And if you're interested in my opinion I would say that it depends on the context.
+
+It depends on how much you want to keep interpretation in your models.
+
+Because if we scale this it will be good because everything will be on the same scale we will be happy
+
+with that and it will be good for our predictions but who will lose the interpretation of knowing which
+
+observations belongs to which country etc..
+'''
+
+
+
+
+
+
+
+
 
