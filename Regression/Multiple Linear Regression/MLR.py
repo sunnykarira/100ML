@@ -80,9 +80,35 @@ import statsmodels.formula.api as sm
 # sm does not take into account b0 coefficient (so we need to add it somehow)
 X = np.append(arr = np.ones((50, 1)).astype(int), values = X, axis=1)
 
+# Backward Elimination (All in to the optimal)
+X_opt = X[:, [0,1,2,3,4,5]]
+# Fitting with new model (statsmodel regressor)
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary() #Summary of the model
+
+# Removing predictor x2 as P = 0.990
+X_opt = X[:, [0,1,3,4,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary() #Summary of the model
 
 
+# Removing predictor x1 as P = 0.940
+X_opt = X[:, [0,3,4,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary() #Summary of the model
 
+
+# Removing predictor x2 as P = 0.602
+X_opt = X[:, [0,3,5]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary() #Summary of the model
+
+# Removing predictor x2 as P = 0.06
+X_opt = X[:, [0,3]]
+regressor_OLS = sm.OLS(endog = y, exog = X_opt).fit()
+regressor_OLS.summary() #Summary of the model
+
+# R & D spend is the powerful predictor
 
 
 
