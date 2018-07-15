@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+e#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jul 15 22:24:19 2018
@@ -16,6 +16,9 @@ Created on Sun Jul 15 22:24:19 2018
 # Linear , Non Linear refers to the coefficients and not the x powered values
 
 # Important => PLR is special case of MLR
+
+# Case  Predict if a new hire is true or making bluff according to his level and salary
+# Level = 6.5 , Salary = 160k
 
 # PR
 import numpy as np
@@ -61,10 +64,11 @@ plt.xlabel("Position Level")
 plt.ylabel("Salary")
 plt.show()
 
+# Predicting with LR
+lin_reg.predict(6.5)  # array([330378.78787879])
 
-
-
-
+# Predicting with PR
+lin_reg_2.predict(poly_reg.fit_transform(6.5))  # array([158862.45265153]) # Truth
 
 
 
